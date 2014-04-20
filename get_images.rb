@@ -30,8 +30,23 @@ class Filer
       end
     }
   end
+
+  def create_file(file_path)
+    open(file_path, "w").close()
+  end
+
+  def write_urllist(file_path,str)
+    if !FileTest.exist?(file_path)
+      create_file(file_path)
+    end
+
+    File::open(file_path, "a"){ |f|
+      f.puts(str)
+    }
+  end
 end
 
-filer = Filer.new
-filepath = ARGV[0]
-filer.download_by_file(filepath)
+#filer = Filer.new
+#filer.download_by_file("image/test.txt")
+#filepath = ARGV[0]
+#filer.download_by_file(filepath)
