@@ -1,7 +1,7 @@
 class Prime
 end
 
-def count_prime(max)
+def my_count_prime(max)
   #配列作成
   array = Array.new
   #配列初期化
@@ -35,14 +35,29 @@ def count_prime(max)
   count = 0
   (0...array.length).each do |i|
     if array[i] == 1
-      print i.to_s + " "
+      #print i.to_s + " "
       count += 1
     end
   end
-  print "\n"
+  #print "\n"
   return count
 end
 
+def eratosthenes_count_prime(max)
+  #最終的な素数配列
+  ans_array = (2..max).to_a
+  2.upto(Math.sqrt(max)) do |num|
+    ans_array.reject!{|elem| (elem % num == 0) && (elem > num)}
+  end
+  p array
+end
+
+
+
 print "最大値（整数): "
 max = STDIN.gets.chomp.to_i
-p count_prime(max)
+start_time = Time.now
+my_count_prime(max)
+end_time = Time.now
+
+p "ゴリ押し: (end-time - start_time).to_s + s"
