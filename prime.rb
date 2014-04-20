@@ -49,15 +49,21 @@ def eratosthenes_count_prime(max)
   2.upto(Math.sqrt(max)) do |num|
     ans_array.reject!{|elem| (elem % num == 0) && (elem > num)}
   end
-  p array
+  #p ans_array
 end
 
 
 
 print "最大値（整数): "
 max = STDIN.gets.chomp.to_i
+
 start_time = Time.now
 my_count_prime(max)
 end_time = Time.now
+p("ゴリ押し:" + (end_time - start_time).to_s + "s")
 
-p "ゴリ押し: (end-time - start_time).to_s + s"
+
+start_time = Time.now
+eratosthenes_count_prime(max)
+end_time = Time.now
+p("エラトステネスの篩:" + (end_time - start_time).to_s + "s")
